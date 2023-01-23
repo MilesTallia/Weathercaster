@@ -6,51 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weathercaster</title>
 
-    <script type="text/javascript"> //This is for getting and translating the date and time
-        function display_refresh(){
-
-            var refresh=1000; // Refresh rate in milli seconds
-            mytime=setTimeout('display_time()',refresh)
-
-        }
-
-        function display_time() {
-            var start_time = new Date() // Imports date
-
-            var hours = start_time.getHours().toString()
-            hours = hours.length==1 ? " " + hours : hours; // Adds leading space if neccesary
-
-            var minutes = start_time.getMinutes().toString()
-            minutes = minutes.length==1 ? 0 + minutes : minutes; // Adds leading zero if neccesary
-
-            var good_time = hours + ":" +  minutes; // Makes time string
-            document.getElementById('time').innerHTML = good_time; // Assigns string
-            display_refresh(); // Refreshes
-        }
-
-        function display_date() {
-            var start_date = new Date() // Imports date
-
-            const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-            var month = start_date.getMonth();
-            month = months[month]
-
-            const dates = ["1st","2nd","3rd","4th","5th","6th","7th","8th","9th","10th","11th","12th","13th","14th","15th","16th","17th","18th","19th","20th","21st","22nd","23rd","24th","25th","26th","27th","28th","29th","30th","31st","32nd"];
-            var date = start_date.getDate();
-            date = dates[date]
-
-            const weekdays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-            var day = start_date.getDay();
-            day = weekdays[day]
-
-            var good_date = day + ", " + month + " " + date;  // Makes date string
-            document.getElementById('date').innerHTML = good_date; // Assigns string
-            display_refresh(); // Refreshes
-        }
-    </script>
+    <script src="Weathercaster.js"></script> <!--Javascript stuff to make website work-->
 
 </head>
 <body onload=display_time();display_date();> <!--Imports date and time function into body (i think)-->
+
+    <dialog open>
+        <p>Hello, please allow us to access your location to get your specialized weather forcast:</p>
+        
+        <button onclick="Weathercaster.getLocation()">Ok</button>
+    </dialog>
 
     <div id="header"> <!--Displays date and time, location, and personal logo-->
 
