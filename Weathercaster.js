@@ -1,4 +1,6 @@
-
+function closeDialog() { // closes dialog box
+    document.getElementById("locationAsk").close();
+}
 
 function display_refresh(){ // refresh func for time and date
 
@@ -41,41 +43,49 @@ function display_date() { // sets up date
     display_refresh(); // Refreshes
 }
 
-var x = document.getElementById("demo");
-
-function closeDialog() {
-    document.getElementById("locationAsk").close();
-}
-
-function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else { 
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
-}
-
-function showPosition(position) {
-    x.innerHTML = "Latitude: " + position.coords.latitude + 
-    "<br>Longitude: " + position.coords.longitude;
-}
+//function weather() {
+//
+//    var location = document.getElementById("location");
+//    var apiKey = 'api key';
+//    var url = 'https://api.forecast.io/forecast/';
+//
+//    navigator.geolocation.getCurrentPosition(success, error);
+//
+//    function success(position) {
+//        latitude = position.coords.latitude;
+//        longitude = position.coords.longitude;
+//
+//        location.innerHTML = 'Latitude is ' + latitude + '° Longitude is ' + longitude + '°';
+//
+//        $.getJSON(url + apiKey + "/" + latitude + "," + longitude + "?callback=?", function(data) {
+//            $('#temp').html(data.currently.temperature + '° F');
+//        });
+//    }
+//}
 
 function weather() {
 
     var location = document.getElementById("location");
-    var apiKey = 'api key';
+    var apiKey = 'INSERT API KEY';
     var url = 'https://api.forecast.io/forecast/';
 
     navigator.geolocation.getCurrentPosition(success, error);
 
     function success(position) {
-        latitude = position.coords.latitude;
-        longitude = position.coords.longitude;
+      latitude = position.coords.latitude;
+      longitude = position.coords.longitude;
 
-        location.innerHTML = 'Latitude is ' + latitude + '° Longitude is ' + longitude + '°';
+      location.innerHTML = 'Latitude is ' + latitude + '° Longitude is ' + longitude + '°';
 
-        $.getJSON(url + apiKey + "/" + latitude + "," + longitude + "?callback=?", function(data) {
-            $('#temp').html(data.currently.temperature + '° F');
-        });
+       $.getJSON(url + apiKey + "/" + latitude + "," + longitude + "?callback=?", function(data) {
+        $('#temp').html(data.currently.temperature + '° F');
+        $('#minutely').html(data.minutely.summary);
+      });
     }
-}
+
+    function error() {
+      location.innerHTML = "Unable to retrieve your location";
+    }
+
+    location.innerHTML = "Locating...";
+  }

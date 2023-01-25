@@ -11,7 +11,7 @@
 </head>
 <body onload=display_time();display_date();getLocation();> <!--Imports date and time function into body (i think)-->
 
-    <dialog id="locationAsk" open>
+    <dialog id="locationAsk" open> <!-- Dialog Box to ask for location-->
         <p>Hello, please allow us to access your location to get your specialized weather forcast:</p>
         <button onclick="closeDialog();">Ok</button>
     </dialog>
@@ -122,6 +122,9 @@
         </div>
 
     </div>
+
+    <h1><div id="temp"></div><div id="minutely"></div></h1>
+    <h2><div id="location"></div></h2>
 
 </body>
 </html>
