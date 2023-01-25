@@ -9,12 +9,11 @@
     <script src="Weathercaster.js"></script> <!--Javascript stuff to make website work-->
 
 </head>
-<body onload=display_time();display_date();> <!--Imports date and time function into body (i think)-->
+<body onload=display_time();display_date();getLocation();> <!--Imports date and time function into body (i think)-->
 
-    <dialog open>
+    <dialog id="locationAsk" open>
         <p>Hello, please allow us to access your location to get your specialized weather forcast:</p>
-        
-        <button onclick="Weathercaster.getLocation()">Ok</button>
+        <button onclick="closeDialog();">Ok</button>
     </dialog>
 
     <div id="header"> <!--Displays date and time, location, and personal logo-->
